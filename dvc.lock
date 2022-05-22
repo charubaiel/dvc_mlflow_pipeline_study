@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  download:
+    cmd: python3 ./ops/download.py
+    deps:
+    - path: ./data/config.yml
+      md5: 107d4b258389d3bc2b03b3d33912f0b0
+      size: 129
+    - path: ./ops/download.py
+      md5: fc2ff7dd06d104068f2d72f7e00e820b
+      size: 1084
+    outs:
+    - path: ./data/title_basics.csv
+      md5: d768caeaeabce70570ec4fada5aff22b
+      size: 13186134
+    - path: ./data/title_principals.csv
+      md5: 491e6b0e07eaff92af981be498448bbc
+      size: 134175554
+    - path: ./data/title_ratings.csv
+      md5: db92ec459e2cd9da6fd888fbae073174
+      size: 5513992
+  preprocess:
+    cmd: python3 ./ops/clean_data.py
+    deps:
+    - path: ./data/title_basics.csv
+      md5: d768caeaeabce70570ec4fada5aff22b
+      size: 13186134
+    - path: ./data/title_principals.csv
+      md5: 491e6b0e07eaff92af981be498448bbc
+      size: 134175554
+    - path: ./data/title_ratings.csv
+      md5: db92ec459e2cd9da6fd888fbae073174
+      size: 5513992
+    outs:
+    - path: ./data/eval_df.csv
+      md5: 0121162db1a6e36d78e08458518c18be
+      size: 11991388
+  evaluate:
+    cmd: python3 ./ops/evaluate.py
+    deps:
+    - path: ./data/config.yml
+      md5: 107d4b258389d3bc2b03b3d33912f0b0
+      size: 129
+    - path: ./data/eval_df.csv
+      md5: 0121162db1a6e36d78e08458518c18be
+      size: 11991388

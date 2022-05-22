@@ -4,11 +4,6 @@ from ops.evaluate import evaluate_run
 from utils import *
 
 
-with open('config.yml') as  w:
-    params = yaml.safe_load(w)
-    params_download = params['stage']['download']['params']
-    params_eval = params['stage']['evaluate']['params']
-
 logging.info('START Pipeline')
 download_imdb_data(params=params_download)
 logging.info('START Cleaning data')

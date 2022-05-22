@@ -1,3 +1,4 @@
+from __init__ import *
 from utils import *
 
 
@@ -24,3 +25,9 @@ def get_eval_dataframe(data_folder='data'):
 
     df = basics.merge(ratings, on= 'tconst').set_index('tconst').drop('primaryTitle',axis=1)
     df.to_csv(f'{data_folder}/eval_df.csv')
+
+
+
+if __name__ == '__main__':
+    clean_basics()
+    get_eval_dataframe()

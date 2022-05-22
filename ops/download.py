@@ -1,5 +1,5 @@
+from __init__ import *
 from utils import *
-
 
 def download_imdb_data(params):
 
@@ -23,3 +23,7 @@ def download_imdb_data(params):
         tmp_ttl_df.to_csv('data/'+name+'.csv',index=False)
 
         logging.info(f'COMPLETE {name} {index}/{len(datasets_urls)} download step')
+
+
+if __name__ == '__main__':
+    download_imdb_data(params_download)

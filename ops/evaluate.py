@@ -1,6 +1,5 @@
+from __init__ import *
 from utils import *
-
-
 
 
 
@@ -31,3 +30,6 @@ def evaluate_run(params,path_to_df='data/eval_df.csv'):
         mlflow.log_metric('MAE_clip',mae_clip)
         mlflow.log_metric('MAE',mae)
 
+
+if __name__ == '__main__':
+    evaluate_run(params_eval)

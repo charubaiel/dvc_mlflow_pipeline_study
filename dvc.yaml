@@ -1,0 +1,23 @@
+stages:
+  download:
+    cmd: python3 ./ops/download.py
+    deps:
+    - ./ops/download.py
+    - ./data/config.yml
+    outs:
+    - ./data/title_basics.csv
+    - ./data/title_principals.csv
+    - ./data/title_ratings.csv
+  preprocess:
+    cmd: python3 ./ops/clean_data.py
+    deps:
+    - ./data/title_basics.csv
+    - ./data/title_principals.csv
+    - ./data/title_ratings.csv
+    outs:
+    - ./data/eval_df.csv
+  evaluate:
+    cmd: python3 ./ops/evaluate.py
+    deps:
+    - ./data/eval_df.csv
+    - ./data/config.yml
