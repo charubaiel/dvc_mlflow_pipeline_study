@@ -6,7 +6,9 @@ from utils import *
 
 def evaluate_run(params,path_to_df='data/eval_df.csv'):
 
-    with mlflow.start_run():
+    mlflow.set_tracking_uri("http://localhost:5000")
+
+    with mlflow.start_run(run_name='exp1'):
 
         df = pd.read_csv(path_to_df).set_index('tconst')
         data = df.drop('averageRating',axis=1)
@@ -19,7 +21,9 @@ def evaluate_run(params,path_to_df='data/eval_df.csv'):
         lr = linear_model.ElasticNet(alpha=params['alpha'])
 
         lr.fit(x,y)
-        mlflow.sklearn.log_model(lr,params['models_path'])
+        mlflow.sklearn.log_model(lr,
+                                params['models_path'],
+                                registered_model_name="elastic-model")
 
         mae_clip = np.mean(np.abs(np.round(lr.predict(xv),0) - yv.round(0)))
         mae = np.mean(np.abs(lr.predict(xv) - yv))
