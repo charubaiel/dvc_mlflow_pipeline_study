@@ -1,9 +1,0 @@
-stage:
-  download:
-    script: download.py
-    params:
-      minimal_num_votes: 100
-  evaluate:
-    script: evaluate.py
-    params:
-      alpha: 0.5

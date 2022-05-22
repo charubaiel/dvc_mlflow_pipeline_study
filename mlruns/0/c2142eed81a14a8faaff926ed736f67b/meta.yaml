@@ -1,0 +1,15 @@
+artifact_uri: file:///home/charubaiel/workflow/dvc_hehe/mlruns/0/c2142eed81a14a8faaff926ed736f67b/artifacts
+end_time: 1653238118538
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: c2142eed81a14a8faaff926ed736f67b
+run_uuid: c2142eed81a14a8faaff926ed736f67b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1653238118326
+status: 4
+tags: []
+user_id: charubaiel
