@@ -12,6 +12,12 @@ Pipeline full run:
 python3 pipeline.py
 ```
 
+or
+
+```
+dvc repro
+```
+
 ## ETC:
 ### steps
 
