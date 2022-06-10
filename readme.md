@@ -31,7 +31,10 @@ Services:
     - DVC (halfdone)
 
 ### deploy
-[reference to compose IaC for deploy](https://github.com/charubaiel/mlops_compose/tree/master)
+[reference to compose IaC for deploy](https://github.com/charubaiel/mlops_compose/tree/master)  
+
+
+
 '''
 deploy version #5
 s3
