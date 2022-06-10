@@ -4,5 +4,5 @@ stage:
       minimal_num_votes: 100
   evaluate:
     params:
-      alpha: 0.99
+      alpha: 0.1
       models_path: 'models'
