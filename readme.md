@@ -31,13 +31,15 @@ Services:
     - DVC (halfdone)
 
 ### deploy
-[https://github.com/charubaiel/mlops_compose/tree/master](reference to compose IaC for deploy)
+[reference to compose IaC for deploy](https://github.com/charubaiel/mlops_compose/tree/master)
 '''
 deploy version #5
 s3
 postgres
 mlflow
 '''
+
+
 MLFlow:
     runs and serve locally:
     '''
