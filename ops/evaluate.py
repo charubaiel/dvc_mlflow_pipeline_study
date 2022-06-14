@@ -6,13 +6,14 @@ from mlflow.models.signature import infer_signature
 
 mlflow.set_tracking_uri("http://localhost:8118")
 # mlflow.autolog(log_input_examples=True)
+mlflow.set_experiment('movie_rate_predict')
 
 
 
 def evaluate_run(params,path_to_df='data/eval_df.csv'):
 
 
-    with mlflow.start_run(run_name='docker_server_test'):
+    with mlflow.start_run(run_name='dvc_test'):
 
 
         df = pd.read_csv(path_to_df).set_index('tconst')
@@ -27,10 +28,14 @@ def evaluate_run(params,path_to_df='data/eval_df.csv'):
 
         lr.fit(x,y)
         singaturka = infer_signature(xv,yv)
+
         mlflow.sklearn.log_model(lr,
                                 params['models_path'],
-                                registered_model_name="elastic-model",
+                                registered_model_name="dvc_test-elastic_movie_score_pred",
                                 signature=singaturka)
+
+
+        
 
         mae_clip = np.mean(np.abs(np.round(lr.predict(xv),0) - yv.round(0)))
         mae = np.mean(np.abs(lr.predict(xv) - yv))

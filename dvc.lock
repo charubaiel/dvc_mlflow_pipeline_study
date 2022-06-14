@@ -4,43 +4,43 @@ stages:
     cmd: python3 ./ops/download.py
     deps:
     - path: ./ops/config.yml
-      md5: 4ef35b229cc092bb56f106489bf1468a
-      size: 129
+      md5: a36513342943a1d50af1a0abf7496e1e
+      size: 128
     - path: ./ops/download.py
       md5: fc2ff7dd06d104068f2d72f7e00e820b
       size: 1084
     outs:
     - path: ./data/title_basics.csv
-      md5: b6d404d1aaacd55cd314b3a8702a1f38
-      size: 26133661
+      md5: 90b69b37520c4e6a5b122eb8d877b0f7
+      size: 26151480
     - path: ./data/title_principals.csv
-      md5: c0611b04da116a792b79eca2a785a8c0
-      size: 134792986
+      md5: 54a18a6493366d92613443385b40055d
+      size: 134884238
     - path: ./data/title_ratings.csv
-      md5: 8e7b925b6c36d6b75275a4f44266762f
-      size: 5538983
+      md5: 8b92c980ff66d4e690cb5fcb76d05043
+      size: 5542713
   preprocess:
     cmd: python3 ./ops/clean_data.py
     deps:
     - path: ./data/title_basics.csv
-      md5: b1e418a12f09fa5f68c55820a1675812
-      size: 13225889
+      md5: 8027e5c1ae62906e28fd0efbf7d4cbf7
+      size: 13232592
     - path: ./data/title_principals.csv
-      md5: c0611b04da116a792b79eca2a785a8c0
-      size: 134792986
+      md5: 54a18a6493366d92613443385b40055d
+      size: 134884238
     - path: ./data/title_ratings.csv
-      md5: 8e7b925b6c36d6b75275a4f44266762f
-      size: 5538983
+      md5: 8b92c980ff66d4e690cb5fcb76d05043
+      size: 5542713
     outs:
     - path: ./data/eval_df.csv
-      md5: d274180975440c12ee80ced8c79fd3ff
-      size: 12027905
+      md5: 64290cc4e367a91ebd38f74a40358889
+      size: 12033969
   evaluate:
     cmd: python3 ./ops/evaluate.py
     deps:
     - path: ./data/eval_df.csv
-      md5: 98b96357af473c10ca266bb57ac6866e
-      size: 12026133
+      md5: 64290cc4e367a91ebd38f74a40358889
+      size: 12033969
     - path: ./ops/config.yml
-      md5: 48bb2c6f7e1f5fe28fe23ad948b559cf
+      md5: a36513342943a1d50af1a0abf7496e1e
       size: 128
