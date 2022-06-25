@@ -1,9 +1,8 @@
 stages:
   download:
-    cmd: python3 ./ops/download.py
+    cmd: python3 ./ops/download.py 1000
     deps:
     - ./ops/download.py
-    - ./ops/config.yml
     outs:
     - ./data/title_basics.csv
     - ./data/title_principals.csv

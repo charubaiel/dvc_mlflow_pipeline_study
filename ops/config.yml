@@ -1,8 +1,8 @@
 stage:
-  download:
-    params:
-      minimal_num_votes: 100
   evaluate:
-    params:
-      alpha: 0.1
+    model:
+      alpha: 0.2
+    mlflow:
       models_path: 'models'
+      tracking_server: "http://localhost:8118"
+      experiment_name: 'movie_rate_predict'

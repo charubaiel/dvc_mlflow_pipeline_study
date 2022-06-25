@@ -1,14 +1,18 @@
+from email.policy import default
 from __init__ import *
 from utils import *
 
-def download_imdb_data(params):
+
+@click.command()
+@click.argument('min_votes',type=int,default=100)
+def download_imdb_data(min_votes:int):
 
     datasets_urls = ['https://datasets.imdbws.com/title.basics.tsv.gz',
                     'https://datasets.imdbws.com/title.principals.tsv.gz',
                     'https://datasets.imdbws.com/title.ratings.tsv.gz']
 
     ratings = pd.read_csv("https://datasets.imdbws.com/title.ratings.tsv.gz",sep='\t',compression='gzip')
-    ratings = ratings[ratings['numVotes']>params['minimal_num_votes']].set_index('tconst')
+    ratings = ratings[ratings['numVotes']>min_votes].set_index('tconst')
 
 
     for index,url in enumerate(datasets_urls,1):
@@ -26,4 +30,4 @@ def download_imdb_data(params):
 
 
 if __name__ == '__main__':
-    download_imdb_data(params_download)
+    download_imdb_data()

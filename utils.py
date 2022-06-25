@@ -11,6 +11,7 @@ import logging
 import joblib
 import sys
 import os
+import click
 
 sys.path.append(os.getcwd())
 
@@ -19,6 +20,6 @@ logging.basicConfig(level=logging.INFO,
 
 with open('ops/config.yml') as  w:
     params = yaml.safe_load(w)
-    params_download = params['stage']['download']['params']
-    params_eval = params['stage']['evaluate']['params']
+    model_params = params['stage']['evaluate']['model']
+    mlflow_params = params['stage']['evaluate']['mlflow']
 

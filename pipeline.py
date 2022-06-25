@@ -5,10 +5,10 @@ from utils import *
 
 
 logging.info('START Pipeline')
-download_imdb_data(params=params_download)
+download_imdb_data()
 logging.info('START Cleaning data')
 clean_basics()
 logging.info('START Collect data')
 get_eval_dataframe()
 logging.info('START Evaluating model')
-evaluate_run(params=params_eval)
+evaluate_run(model_params)

@@ -4,13 +4,11 @@ from mlflow.models.signature import infer_signature
 
 
 
-mlflow.set_tracking_uri("http://localhost:8118")
-# mlflow.autolog(log_input_examples=True)
-mlflow.set_experiment('movie_rate_predict')
+mlflow.set_tracking_uri(mlflow_params['tracking_server'])
+mlflow.set_experiment(mlflow_params['experiment_name'])
 
 
-
-def evaluate_run(params,path_to_df='data/eval_df.csv'):
+def evaluate_run(params,path_to_df:str='data/eval_df.csv'):
 
 
     with mlflow.start_run(run_name='dvc_test'):
@@ -22,15 +20,15 @@ def evaluate_run(params,path_to_df='data/eval_df.csv'):
 
         x,xv,y,yv = model_selection.train_test_split(data,target,train_size=.7)
 
-        mlflow.log_param('alpha',params['alpha'])
+        mlflow.log_params(params)
 
-        lr = linear_model.ElasticNet(alpha=params['alpha'])
+        lr = linear_model.ElasticNet(**params)
 
         lr.fit(x,y)
         singaturka = infer_signature(xv,yv)
 
-        mlflow.sklearn.log_model(lr,
-                                params['models_path'],
+        model_info = mlflow.sklearn.log_model(lr,
+                                artifact_path=mlflow_params['models_path'],
                                 registered_model_name="dvc_test-elastic_movie_score_pred",
                                 signature=singaturka)
 
@@ -43,6 +41,13 @@ def evaluate_run(params,path_to_df='data/eval_df.csv'):
         mlflow.log_metric('MAE_clip',mae_clip)
         mlflow.log_metric('MAE',mae)
 
-
+        result = mlflow.evaluate(
+                                model_info.model_uri,
+                                xv.assign(label=yv.values),
+                                targets="label",
+                                model_type="regressor",
+                                dataset_name="imdb",
+                                evaluators=["default"],
+                            )
 if __name__ == '__main__':
-    evaluate_run(params_eval)
+    evaluate_run(params = model_params)
