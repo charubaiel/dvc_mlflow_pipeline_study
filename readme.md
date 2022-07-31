@@ -41,26 +41,27 @@ Services:
 
 
 
-'''
+```
 deploy version #5
 s3
 postgres
 mlflow
-'''
+```
 
 
-MLFlow:
-    runs and serve locally:
-    '''
-    mlflow models serve --no-conda -m mlflow-artifacts:/0/69853daacf7b4fe69bd8482adcc0a99e/artifacts/models -h 0.0.0.0 -p 8001
-    '''
-    runs and serve locally by manual api:
-    '''
-    uvicorn ml_api:app -h 0.0.0.0 -p 8001
-    '''
+MLFlow:  
 
-    build and serve on docker:~3.5 gb
-    '''
-     mlflow models build-docker -m mlflow-artifacts:/0/69853daacf7b4fe69bd8482adcc0a99e/artifacts/models -n 'elastic_docker'
-        docker run -p 5001:8080 "elastic_docker" -d
-    '''
+runs and serve locally:
+
+`mlflow models serve --no-conda -m mlflow-artifacts:/0/69853daacf7b4fe69bd8482adcc0a99e/artifacts/models -h 0.0.0.0 -p 8001`  
+
+runs and serve locally by manual api:  
+
+`uvicorn ml_api:app -h 0.0.0.0 -p 8001`  
+
+build and serve on docker:~3.5 gb  
+
+```
+mlflow models build-docker -m mlflow-artifacts:/0/69853daacf7b4fe69bd8482adcc0a99e/artifacts/models -n 'elastic_docker'
+docker run -p 5001:8080 "elastic_docker" -d
+```
